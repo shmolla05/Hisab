@@ -1,0 +1,519 @@
+:root {
+  --text: #6b6375;
+  --text-h: #08060d;
+  --bg: #fff;
+  --border: #e5e4e7;
+  --code-bg: #f4f3ec;
+  --accent: #aa3bff;
+  --accent-bg: rgba(170, 59, 255, 0.1);
+  --accent-border: rgba(170, 59, 255, 0.5);
+  --social-bg: rgba(244, 243, 236, 0.5);
+  --shadow:
+    rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
+
+  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
+  --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
+  --mono: ui-monospace, Consolas, monospace;
+
+  font: 18px/145% var(--sans);
+  letter-spacing: 0.18px;
+  color-scheme: light dark;
+  color: var(--text);
+  background: var(--bg);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  @media (max-width: 1024px) {
+    font-size: 16px;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --text: #9ca3af;
+    --text-h: #f3f4f6;
+    --bg: #16171d;
+    --border: #2e303a;
+    --code-bg: #1f2028;
+    --accent: #c084fc;
+    --accent-bg: rgba(192, 132, 252, 0.15);
+    --accent-border: rgba(192, 132, 252, 0.5);
+    --social-bg: rgba(47, 48, 58, 0.5);
+    --shadow:
+      rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
+  }
+
+  #social .button-icon {
+    filter: invert(1) brightness(2);
+  }
+}
+
+body {
+  margin: 0;
+}
+
+#root {
+  width: 1126px;
+  max-width: 100%;
+  margin: 0 auto;
+  text-align: center;
+  border-inline: 1px solid var(--border);
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+h1,
+h2 {
+  font-family: var(--heading);
+  font-weight: 500;
+  color: var(--text-h);
+}
+
+h1 {
+  font-size: 56px;
+  letter-spacing: -1.68px;
+  margin: 32px 0;
+  @media (max-width: 1024px) {
+    font-size: 36px;
+    margin: 20px 0;
+  }
+}
+h2 {
+  font-size: 24px;
+  line-height: 118%;
+  letter-spacing: -0.24px;
+  margin: 0 0 8px;
+  @media (max-width: 1024px) {
+    font-size: 20px;
+  }
+}
+p {
+  margin: 0;
+}
+
+code,
+.counter {
+  font-family: var(--mono);
+  display: inline-flex;
+  border-radius: 4px;
+  color: var(--text-h);
+}
+
+code {
+  font-size: 15px;
+  line-height: 135%;
+  padding: 4px 8px;
+  background: var(--code-bg);
+}
+
+/* ========================================
+   HISAB APP STYLING
+   ======================================== */
+
+.app {
+  min-height: 100vh;
+  background: #f7f8fc;
+  color: #1f2937;
+  text-align: center;
+}
+
+.header {
+  padding: 28px 20px 22px;
+  text-align: center;
+  background: #ffffff;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.header h1 {
+  margin: 0;
+  font-size: 34px;
+  font-weight: 700;
+  letter-spacing: -0.8px;
+}
+
+.header p {
+  margin-top: 4px;
+  color: #6b7280;
+  font-size: 15px;
+}
+
+.container {
+  width: 100%;
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.card {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+  box-sizing: border-box;
+}
+
+.card h3 {
+  margin: 0 0 16px;
+  color: #111827;
+  font-size: 18px;
+  font-weight: 650;
+}
+
+/* ========================================
+   TRANSACTION HISTORY
+   ======================================== */
+
+.transactions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.transaction {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 14px;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  background: #fafafa;
+}
+
+.transaction > div:first-child {
+  min-width: 0;
+}
+
+.transaction strong {
+  display: block;
+  color: #111827;
+  font-size: 15px;
+}
+
+.transaction small {
+  display: block;
+  margin-top: 4px;
+  color: #6b7280;
+  font-size: 13px;
+}
+
+.transaction-right {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+/* ========================================
+   BUTTONS
+   ======================================== */
+
+.delete-button {
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  padding: 7px 12px;
+  background: #ffffff;
+  color: #374151;
+  font: inherit;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.delete-button:hover {
+  background: #f3f4f6;
+}
+
+.delete-button:active {
+  transform: scale(0.97);
+}
+
+/* Edit button */
+.transaction-right .delete-button:first-of-type {
+  border-color: #c7d2fe;
+  background: #eef2ff;
+  color: #4338ca;
+}
+
+.transaction-right .delete-button:first-of-type:hover {
+  background: #e0e7ff;
+}
+
+/* Delete button */
+.transaction-right .delete-button:last-of-type {
+  border-color: #fecaca;
+  background: #fef2f2;
+  color: #dc2626;
+}
+
+.transaction-right .delete-button:last-of-type:hover {
+  background: #fee2e2;
+}
+
+/* ========================================
+   EDIT FORM
+   ======================================== */
+
+.edit-form {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.edit-form label {
+  display: block;
+  margin: 12px 0 6px;
+  color: #374151;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.edit-form label:first-child {
+  margin-top: 0;
+}
+
+.edit-form input,
+.edit-form select {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 9px;
+  background: #ffffff;
+  color: #111827;
+  font: inherit;
+  font-size: 14px;
+  outline: none;
+}
+
+.edit-form input:focus,
+.edit-form select:focus {
+  border-color: #6366f1;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.12);
+}
+
+.edit-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+/* Cancel button */
+.edit-actions .delete-button:first-child {
+  background: #f3f4f6;
+  color: #374151;
+  border-color: #d1d5db;
+}
+
+/* Save Changes button */
+.edit-actions .delete-button:last-child {
+  background: #4f46e5;
+  color: #ffffff;
+  border-color: #4f46e5;
+}
+
+.edit-actions .delete-button:last-child:hover {
+  background: #4338ca;
+}
+
+/* ========================================
+   EMPTY STATE
+   ======================================== */
+
+.empty {
+  color: #6b7280;
+  text-align: center;
+  padding: 18px 0;
+}
+
+/* ========================================
+   MOBILE
+   ======================================== */
+
+@media (max-width: 600px) {
+  .header {
+    padding: 22px 16px 18px;
+  }
+
+  .header h1 {
+    font-size: 30px;
+  }
+
+  .container {
+    padding: 14px;
+  }
+
+  .card {
+    padding: 16px;
+    border-radius: 14px;
+  }
+
+  .transaction {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .transaction-right {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .transaction-right strong {
+    margin-right: auto;
+  }
+
+  .delete-button {
+    padding: 8px 11px;
+  }
+
+  .edit-actions {
+    flex-direction: column-reverse;
+  }
+
+  .edit-actions .delete-button {
+    width: 100%;
+  }
+}
+
+.edit-actions .delete-button {
+  min-width: 90px;
+  padding: 9px 14px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.edit-actions .delete-button:last-child {
+  min-width: 115px;
+}
+
+/* ========================================
+   MONTH SELECTOR
+   ======================================== */
+
+.month-selector {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 12px;
+}
+
+.month-title {
+  min-width: 180px;
+  text-align: center;
+  color: #111827;
+  font-size: 18px;
+}
+
+.month-button {
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #d1d5db;
+  border-radius: 10px;
+  background: #ffffff;
+  color: #374151;
+  font-size: 24px;
+  line-height: 1;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.month-button:hover {
+  background: #f3f4f6;
+  border-color: #9ca3af;
+}
+
+.month-button:active {
+  transform: scale(0.95);
+}
+
+@media (max-width: 600px) {
+  .month-selector {
+    gap: 10px;
+  }
+
+  .month-title {
+    min-width: 150px;
+    font-size: 16px;
+  }
+
+  .month-button {
+    width: 36px;
+    height: 36px;
+  }
+}
+
+/* ========================================
+   MONTH SELECTOR
+   ======================================== */
+
+.month-selector {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+  padding: 4px 2px;
+}
+
+.month-title {
+  flex: 1;
+  text-align: center;
+  color: #111827;
+  font-size: 16px;
+}
+
+.month-title strong {
+  font-weight: 650;
+}
+
+.month-button {
+  width: 38px;
+  height: 38px;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  background: #ffffff;
+  color: #111827;
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.month-button:hover {
+  background: #f8fafc;
+  border-color: #cbd5e1;
+}
+
+.month-button:active {
+  transform: scale(0.94);
+}
+
+@media (max-width: 450px) {
+  .month-selector {
+    gap: 8px;
+  }
+
+  .month-button {
+    width: 36px;
+    height: 36px;
+  }
+
+  .month-title {
+    font-size: 15px;
+  }
+}
