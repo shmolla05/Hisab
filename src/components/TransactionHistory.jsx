@@ -68,7 +68,9 @@ function TransactionHistory({
     return found ? found.label : transactionType;
   };
 
-  const filteredTransactions = transactions.filter((transaction) => {
+const filteredTransactions = [...transactions]
+  .sort((a, b) => new Date(b.date) - new Date(a.date))
+  .filter((transaction) => {
     const search = searchTerm.toLowerCase().trim();
 
     const matchesSearch =
@@ -85,7 +87,7 @@ function TransactionHistory({
       transaction.type === filterType;
 
     return matchesSearch && matchesType;
-  });
+});
 
   const displayedTransactions = transactionPanelOpen
     ? filteredTransactions
@@ -394,13 +396,19 @@ function TransactionItem({
             </button>
 
             <button
-              className="delete-button"
-              onClick={() =>
-                deleteTransaction(transaction.id)
-              }
-            >
-              Delete
-            </button>
+  className="delete-button"
+  onClick={() => {
+    const confirmed = window.confirm(
+      "Are you sure you want to delete this transaction?"
+    );
+
+    if (confirmed) {
+      deleteTransaction(transaction.id);
+    }
+  }}
+>
+  Delete
+</button>
           </div>
         </>
       )}

@@ -410,20 +410,6 @@ currentMonthTransactions.forEach((transaction) => {
     formatMoney={formatMoney}
   />
 
-  {/* Add Transaction */}
-  <AddTransaction
-    type={type}
-    setType={setType}
-    amount={amount}
-    setAmount={setAmount}
-    date={date}
-    setDate={setDate}
-    note={note}
-    setNote={setNote}
-    addTransaction={addTransaction}
-    transactionTypes={transactionTypes}
-  />
-
   {/* Monthly Summary */}
   <div className="month-selector">
     <button
@@ -453,16 +439,30 @@ currentMonthTransactions.forEach((transaction) => {
     formatMoney={formatMoney}
   />
 
-  {/* Weekly Spending */}
-  <WeeklySpending
-    weeklyExpenses={weeklyExpenses}
-    formatMoney={formatMoney}
-  />
-
   {/* Lend & Borrow */}
   <LendBorrow
     totalLent={totalLent}
     totalBorrowed={totalBorrowed}
+    formatMoney={formatMoney}
+  />
+
+  {/* Add Transaction */}
+  <AddTransaction
+    type={type}
+    setType={setType}
+    amount={amount}
+    setAmount={setAmount}
+    date={date}
+    setDate={setDate}
+    note={note}
+    setNote={setNote}
+    addTransaction={addTransaction}
+    transactionTypes={transactionTypes}
+  />
+
+  {/* Weekly Spending */}
+  <WeeklySpending
+    weeklyExpenses={weeklyExpenses}
     formatMoney={formatMoney}
   />
 

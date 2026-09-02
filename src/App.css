@@ -581,3 +581,30 @@ select:focus {
     padding: 14px;
   }
 }
+
+.card > .transaction-toggle {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  color: #111827;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: none;
+}
+
+.card > .transaction-toggle:hover {
+  background: transparent;
+  box-shadow: none;
+}
+
+.card > .transaction-toggle:active {
+  transform: none;
+  box-shadow: none;
+}
