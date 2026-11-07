@@ -269,6 +269,21 @@ const importBackup = (event) => {
       0
     );
 
+    const walletBalance = transactions.reduce(
+  (total, transaction) => {
+    if (transaction.type === "walletDeposit") {
+      return total + transaction.amount;
+    }
+
+    if (transaction.type === "walletExpense") {
+      return total - transaction.amount;
+    }
+
+    return total;
+  },
+  0
+);
+
   // -----------------------------
   // Current month
   // -----------------------------
@@ -413,10 +428,19 @@ currentMonthTransactions.forEach((transaction) => {
       <main className="container">
 
   {/* Current Balance */}
-  <BalanceCard
-    balance={balance}
-    formatMoney={formatMoney}
-  />
+{/* Current Balance */}
+<BalanceCard
+  title="Current Balance"
+  balance={balance}
+  formatMoney={formatMoney}
+/>
+
+{/* Wallet Balance */}
+<BalanceCard
+  title="Wallet Balance"
+  balance={walletBalance}
+  formatMoney={formatMoney}
+/>
 
   {/* Monthly Summary */}
   <div className="month-selector">
