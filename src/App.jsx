@@ -20,6 +20,8 @@ const getSavedStartingBalance = () => {
 const transactionTypes = [
   { value: "expense", label: "Expense" },
   { value: "deposit", label: "Deposit" },
+  { value: "walletDeposit", label: "Wallet Deposit" },
+  { value: "walletExpense", label: "Wallet Expense" },
   { value: "lent", label: "Lent" },
   { value: "borrowed", label: "Borrowed" },
   { value: "special", label: "Special Event" },
@@ -245,15 +247,19 @@ const importBackup = (event) => {
   // -----------------------------
 
   const getBalanceEffect = (transaction) => {
-    if (
-      transaction.type === "deposit" ||
-      transaction.type === "borrowed"
-    ) {
-      return transaction.amount;
-    }
+  if (
+    transaction.type === "deposit" ||
+    transaction.type === "borrowed"
+  ) {
+    return transaction.amount;
+  }
 
-    return -transaction.amount;
-  };
+  if (transaction.type === "walletExpense") {
+    return 0;
+  }
+
+  return -transaction.amount;
+};
 
   const balance =
     startingBalance +
@@ -296,8 +302,9 @@ const importBackup = (event) => {
   const monthlyExpenses = monthlyTransactions
     .filter(
       (transaction) =>
-        transaction.type === "expense" ||
-        transaction.type === "special"
+  transaction.type === "expense" ||
+  transaction.type === "special" ||
+  transaction.type === "walletExpense"
     )
     .reduce(
       (total, transaction) =>
@@ -327,9 +334,10 @@ const weeklyExpenses = [0, 0, 0, 0, 0];
 
 currentMonthTransactions.forEach((transaction) => {
   if (
-    transaction.type === "expense" ||
-    transaction.type === "special"
-  ) {
+  transaction.type === "expense" ||
+  transaction.type === "special" ||
+  transaction.type === "walletExpense"
+) {
     const date = new Date(transaction.date);
     const day = date.getDate();
     const firstDay = new Date(
